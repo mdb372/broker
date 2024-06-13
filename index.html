@@ -78,7 +78,7 @@
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const mc_number = document.getElementById('mc_number').value;
-            const endpoint = 'https://script.google.com/macros/s/AKfycbwVHi09OmqevdS8hj5oF7ezk3ukGxZCN271q0Fl_DClMvGEuCW-UIczyfeNMQvxsmlr/exec';
+            const endpoint = 'https://script.google.com/macros/s/AKfycbw4AwtR2OO_ExwMjWtBXgOlcQ0WkKZFMphai0bbNgSFBPDTony-Wn8-BW8Rziw0bmvt/exec';
             fetch(`${endpoint}?mc_number=${mc_number}`)
                 .then(response => response.json())
                 .then(data => {
