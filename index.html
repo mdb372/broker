@@ -71,7 +71,7 @@
     <script>
         function searchBrokers() {
             const mc_number = document.getElementById('mc_number').value;
-            const endpoint = 'https://script.google.com/macros/s/AKfycbwlQxG4moCDP5dpWqz3sub9nmsPT5tb1aqsNf5_4eJVOsoEyD0aGi8c2LqnfeQlie8/exec'; // Replace with your Google Apps Script URL
+            const endpoint = 'https://script.google.com/macros/s/AKfycbwD6VBCwohSyTQuTugBGbipioURTmY-QKinenio3ZtNSaJpOXiRhNIzAsJEjvAR3LLC/exec'; // Replace with your Google Apps Script URL
 
             if (mc_number.length === 0) {
                 document.getElementById('result').innerHTML = '';
@@ -79,17 +79,10 @@
             }
 
             fetch(`${endpoint}?mc_number=${mc_number}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
                     const resultDiv = document.getElementById('result');
-                    if (data.error) {
-                        resultDiv.innerHTML = `<p class="result-item">${data.error}</p>`;
-                    } else if (data.length === 0) {
+                    if (data.length === 0) {
                         resultDiv.innerHTML = `<p class="result-item">No brokers found</p>`;
                     } else {
                         resultDiv.innerHTML = data.map(broker => `
@@ -102,12 +95,9 @@
                         `).join('');
                     }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    const resultDiv = document.getElementById('result');
-                    resultDiv.innerHTML = `<p class="result-item">Error retrieving data</p>`;
-                });
+                .catch(error => console.error('Error:', error));
         }
     </script>
 </body>
 </html>
+
