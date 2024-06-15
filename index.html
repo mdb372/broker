@@ -72,7 +72,7 @@
         function searchBrokers() {
             const mc_number = document.getElementById('mc_number').value;
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbzHUGK0ey_0L_m_8REeSKZoLMsnHLXpAcR_MzlUCcESVRuySryaf4lBPqYuFWmkj5CQ/exec'; // Replace with your Google Apps Script URL
-            const corsProxy = 'https://cors-anywhere.herokuapp.com/corsdemo';
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
             const endpoint = `${corsProxy}${scriptUrl}`;
 
             if (mc_number.length === 0) {
