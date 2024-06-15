@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,7 +71,9 @@
     <script>
         function searchBrokers() {
             const mc_number = document.getElementById('mc_number').value;
-            const endpoint = 'https://script.google.com/macros/s/AKfycbxESDYU6Bk26hzzD-08cibeNxuwKyud7W1FPyTfyaN1OkiMr-LN1YTugWAE5VzKe0H3/exec'; // Replace with your Google Apps Script URL
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzHUGK0ey_0L_m_8REeSKZoLMsnHLXpAcR_MzlUCcESVRuySryaf4lBPqYuFWmkj5CQ/exec'; // Replace with your Google Apps Script URL
+            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+            const endpoint = `${corsProxy}${scriptUrl}`;
 
             if (mc_number.length === 0) {
                 document.getElementById('result').innerHTML = '';
@@ -100,4 +102,3 @@
     </script>
 </body>
 </html>
-
