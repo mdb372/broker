@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -72,15 +72,15 @@
         function searchBrokers() {
             const mc_number = document.getElementById('mc_number').value;
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbzHUGK0ey_0L_m_8REeSKZoLMsnHLXpAcR_MzlUCcESVRuySryaf4lBPqYuFWmkj5CQ/exec'; // Replace with your Google Apps Script URL
-            const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-            const endpoint = `${corsProxy}${scriptUrl}`;
+            const proxyUrl = 'https://broker-proxy.free.beeceptor.com'; // Replace with your Beeceptor URL
+            const endpoint = `${proxyUrl}?url=${encodeURIComponent(scriptUrl)}&mc_number=${mc_number}`;
 
             if (mc_number.length === 0) {
                 document.getElementById('result').innerHTML = '';
                 return;
             }
 
-            fetch(`${endpoint}?mc_number=${mc_number}`)
+            fetch(endpoint)
                 .then(response => response.json())
                 .then(data => {
                     const resultDiv = document.getElementById('result');
