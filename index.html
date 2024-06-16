@@ -43,88 +43,35 @@
             border-radius: 4px;
             font-size: 1rem;
         }
-        #result {
-            margin-top: 1rem;
-            text-align: left;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .result-item {
-            margin-bottom: 0.5rem;
+        button {
             padding: 0.5rem;
-            border-bottom: 1px solid #ddd;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
         }
-        .result-item:hover {
-            background-color: #f1f1f1;
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Broker Search</h1>
-        <form id="searchForm" onsubmit="return false;">
+        <form id="searchForm">
             <label for="mc_number">MC Number:</label>
-            <input type="text" id="mc_number" name="mc_number" oninput="searchBrokers()" required>
+            <input type="text" id="mc_number" name="mc_number" required>
+            <button type="submit">Search</button>
         </form>
-        <div id="result"></div>
-    </div>
-    <div id="resultsPage" style="display:none;">
-        <h1>Broker Information</h1>
-        <div id="brokerInfo"></div>
-        <button onclick="goBack()">Go Back</button>
     </div>
     <script>
-        async function searchBrokers() {
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             const mc_number = document.getElementById('mc_number').value;
-            const endpoint = 'https://script.google.com/macros/s/AKfycbyZ_kBi_UmMj-N9J8c5qS7tzPQs6HOXfq4WfAF0VIs5x8QcDnVsm1ENFsKcBNd8n8zp/exec'; // Replace with your Google Apps Script URL
-
-            if (mc_number.length === 0) {
-                document.getElementById('result').innerHTML = '';
-                return;
-            }
-
-            try {
-                const response = await fetch(`${endpoint}?mc_number=${mc_number}`, {
-                    mode: 'cors'
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-                if (data.length === 0) {
-                    document.getElementById('result').innerHTML = `<p class="result-item">No brokers found</p>`;
-                } else {
-                    displayResultsPage(data);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('result').innerHTML = `<p class="result-item">Failed to fetch data</p>`;
-            }
-        }
-
-        function displayResultsPage(data) {
-            const resultsPage = document.getElementById('resultsPage');
-            const brokerInfo = document.getElementById('brokerInfo');
-
-            brokerInfo.innerHTML = data.map(broker => `
-                <div class="result-item">
-                    <p><strong>Name:</strong> ${broker.name}</p>
-                    <p><strong>MC Number:</strong> ${broker.mc_number}</p>
-                    <p><strong>Minimum Age Authority:</strong> ${broker.min_age_authority} years</p>
-                    <p><strong>Payment Options:</strong> ${broker.payment_options}</p>
-                </div>
-            `).join('');
-
-            document.querySelector('.container').style.display = 'none';
-            resultsPage.style.display = 'block';
-        }
-
-        function goBack() {
-            document.getElementById('resultsPage').style.display = 'none';
-            document.querySelector('.container').style.display = 'block';
-        }
+            window.location.href = `results.html?mc_number=${mc_number}`;
+        });
     </script>
 </body>
 </html>
