@@ -74,25 +74,34 @@
         <button onclick="goBack()">Go Back</button>
     </div>
     <script>
-        function searchBrokers() {
+        async function searchBrokers() {
             const mc_number = document.getElementById('mc_number').value;
-            const endpoint = 'https://script.google.com/macros/s/AKfycbwj0waDfl9ah10WzEHjjVJPZhnz0ZAOgDoODWNZ8iswf3XaqSrESlwRRanhIP3quSlS/exec'; // Replace with your Google Apps Script URL
+            const endpoint = 'https://script.google.com/macros/s/AKfycbzHUGK0ey_0L_m_8REeSKZoLMsnHLXpAcR_MzlUCcESVRuySryaf4lBPqYuFWmkj5CQ/exec'; // Replace with your Google Apps Script URL
 
             if (mc_number.length === 0) {
                 document.getElementById('result').innerHTML = '';
                 return;
             }
 
-            fetch(`${endpoint}?mc_number=${mc_number}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length === 0) {
-                        document.getElementById('result').innerHTML = `<p class="result-item">No brokers found</p>`;
-                    } else {
-                        displayResultsPage(data);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+            try {
+                const response = await fetch(`${endpoint}?mc_number=${mc_number}`, {
+                    mode: 'cors'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                if (data.length === 0) {
+                    document.getElementById('result').innerHTML = `<p class="result-item">No brokers found</p>`;
+                } else {
+                    displayResultsPage(data);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = `<p class="result-item">Failed to fetch data</p>`;
+            }
         }
 
         function displayResultsPage(data) {
