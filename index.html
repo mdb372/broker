@@ -68,36 +68,53 @@
         </form>
         <div id="result"></div>
     </div>
+    <div id="resultsPage" style="display:none;">
+        <h1>Broker Information</h1>
+        <div id="brokerInfo"></div>
+        <button onclick="goBack()">Go Back</button>
+    </div>
     <script>
         function searchBrokers() {
             const mc_number = document.getElementById('mc_number').value;
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbzHUGK0ey_0L_m_8REeSKZoLMsnHLXpAcR_MzlUCcESVRuySryaf4lBPqYuFWmkj5CQ/exec'; // Replace with your Google Apps Script URL
-            const proxyUrl = 'https://broker-proxy.free.beeceptor.com'; // Replace with your Beeceptor URL
-            const endpoint = `${proxyUrl}?url=${encodeURIComponent(scriptUrl)}&mc_number=${mc_number}`;
+            const endpoint = 'https://script.google.com/macros/s/AKfycbwj0waDfl9ah10WzEHjjVJPZhnz0ZAOgDoODWNZ8iswf3XaqSrESlwRRanhIP3quSlS/exec'; // Replace with your Google Apps Script URL
 
             if (mc_number.length === 0) {
                 document.getElementById('result').innerHTML = '';
                 return;
             }
 
-            fetch(endpoint)
+            fetch(`${endpoint}?mc_number=${mc_number}`)
                 .then(response => response.json())
                 .then(data => {
-                    const resultDiv = document.getElementById('result');
                     if (data.length === 0) {
-                        resultDiv.innerHTML = `<p class="result-item">No brokers found</p>`;
+                        document.getElementById('result').innerHTML = `<p class="result-item">No brokers found</p>`;
                     } else {
-                        resultDiv.innerHTML = data.map(broker => `
-                            <div class="result-item">
-                                <p><strong>Name:</strong> ${broker.name}</p>
-                                <p><strong>MC Number:</strong> ${broker.mc_number}</p>
-                                <p><strong>Minimum Age Authority:</strong> ${broker.min_age_authority} years</p>
-                                <p><strong>Payment Options:</strong> ${broker.payment_options}</p>
-                            </div>
-                        `).join('');
+                        displayResultsPage(data);
                     }
                 })
                 .catch(error => console.error('Error:', error));
+        }
+
+        function displayResultsPage(data) {
+            const resultsPage = document.getElementById('resultsPage');
+            const brokerInfo = document.getElementById('brokerInfo');
+
+            brokerInfo.innerHTML = data.map(broker => `
+                <div class="result-item">
+                    <p><strong>Name:</strong> ${broker.name}</p>
+                    <p><strong>MC Number:</strong> ${broker.mc_number}</p>
+                    <p><strong>Minimum Age Authority:</strong> ${broker.min_age_authority} years</p>
+                    <p><strong>Payment Options:</strong> ${broker.payment_options}</p>
+                </div>
+            `).join('');
+
+            document.querySelector('.container').style.display = 'none';
+            resultsPage.style.display = 'block';
+        }
+
+        function goBack() {
+            document.getElementById('resultsPage').style.display = 'none';
+            document.querySelector('.container').style.display = 'block';
         }
     </script>
 </body>
