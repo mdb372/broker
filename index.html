@@ -3,75 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Broker Search</title>
+    <title>Broker Directory</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
-        .container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+        table {
             width: 100%;
+            border-collapse: collapse;
         }
-        h1 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            color: #007bff;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"] {
-            padding: 0.5rem;
+        th, td {
             border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
+            padding: 8px;
         }
-        button {
-            padding: 0.5rem;
-            background-color: #007bff;
-            border: none;
-            border-radius: 4px;
-            color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
         }
-        button:hover {
-            background-color: #0056b3;
+        #searchBar {
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Broker Search</h1>
-        <form id="searchForm">
-            <label for="mc_number">MC Number:</label>
-            <input type="text" id="mc_number" name="mc_number" required>
-            <button type="submit">Search</button>
-        </form>
-    </div>
+    <h1>Broker Directory</h1>
+    <input type="text" id="searchBar" placeholder="Search by Name, DOT or MC number..." onkeyup="searchBrokers()">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>DOT</th>
+                <th>MC</th>
+                <th>Payment Methods</th>
+                <th>Minimum Age Authority</th>
+                <th>Payment Options</th>
+            </tr>
+        </thead>
+        <tbody id="brokerTable">
+            <!-- Sample broker data -->
+            <tr>
+                <td>Broker A</td>
+                <td>123456</td>
+                <td>MC7890</td>
+                <td>ACH, Check</td>
+                <td>1 Year</td>
+                <td>Quick Pay, Standard</td>
+            </tr>
+            <tr>
+                <td>Broker B</td>
+                <td>654321</td>
+                <td>MC0987</td>
+                <td>Wire Transfer</td>
+                <td>6 Months</td>
+                <td>Standard</td>
+            </tr>
+            <!-- Add more brokers as needed -->
+        </tbody>
+    </table>
     <script>
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const mc_number = document.getElementById('mc_number').value;
-            window.location.href = `results.html?mc_number=${mc_number}`;
-        });
+        function searchBrokers() {
+            const input = document.getElementById('searchBar').value.toUpperCase();
+            const table = document.getElementById('brokerTable');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 0; i < tr.length; i++) {
+                const tdName = tr[i].getElementsByTagName('td')[0];
+                const tdDOT = tr[i].getElementsByTagName('td')[1];
+                const tdMC = tr[i].getElementsByTagName('td')[2];
+
+                if (tdName || tdDOT || tdMC) {
+                    const txtValueName = tdName.textContent || tdName.innerText;
+                    const txtValueDOT = tdDOT.textContent || tdDOT.innerText;
+                    const txtValueMC = tdMC.textContent || tdMC.innerText;
+
+                    if (txtValueName.toUpperCase().indexOf(input) > -1 || 
+                        txtValueDOT.toUpperCase().indexOf(input) > -1 || 
+                        txtValueMC.toUpperCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>
