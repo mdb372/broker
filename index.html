@@ -1,108 +1,119 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.77">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broker Directory</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        #searchBar {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Broker Directory&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>table {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-collapse: collapse;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th, td {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ddd;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f2f2f2;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>#searchBar {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Broker Directory&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;input type="text" id="searchBar" placeholder="Search by Name, DOT or MC number..." onkeyup="searchBrokers()"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Name&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;DOT&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;MC&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Payment Methods&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Minimum Age Authority&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Payment Options&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;tbody id="brokerTable"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Sample broker data --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;Broker A&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;123456&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;MC7890&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;ACH, Check&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;1 Year&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;Quick Pay, Standard&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;Broker B&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;654321&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;MC0987&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;Wire Transfer&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;6 Months&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;td&gt;Standard&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Add more brokers as needed --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function searchBrokers() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const input = document.getElementById('searchBar').value.toUpperCase();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const table = document.getElementById('brokerTable');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const tr = table.getElementsByTagName('tr');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; tr.length; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const tdName = tr[i].getElementsByTagName('td')[0];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const tdDOT = tr[i].getElementsByTagName('td')[1];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const tdMC = tr[i].getElementsByTagName('td')[2];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (tdName || tdDOT || tdMC) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const txtValueName = tdName.textContent || tdName.innerText;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const txtValueDOT = tdDOT.textContent || tdDOT.innerText;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const txtValueMC = tdMC.textContent || tdMC.innerText;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (txtValueName.toUpperCase().indexOf(input) &gt; -1 ||<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>txtValueDOT.toUpperCase().indexOf(input) &gt; -1 ||<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>txtValueMC.toUpperCase().indexOf(input) &gt; -1) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>tr[i].style.display = "";</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>tr[i].style.display = "none";</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <div class="container">
+        <h1>Broker Directory</h1>
+        <input type="text" id="searchBar" placeholder="Search by Name, DOT or MC number..." onkeyup="searchBrokers()">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>DOT</th>
+                    <th>MC</th>
+                    <th>Payment Methods</th>
+                    <th>Minimum Age Authority</th>
+                    <th>Payment Options</th>
+                </tr>
+            </thead>
+            <tbody id="brokerTable">
+                <!-- Sample broker data -->
+                <tr>
+                    <td>Broker A</td>
+                    <td>123456</td>
+                    <td>MC7890</td>
+                    <td>ACH, Check</td>
+                    <td>1 Year</td>
+                    <td>Quick Pay, Standard</td>
+                </tr>
+                <tr>
+                    <td>Broker B</td>
+                    <td>654321</td>
+                    <td>MC0987</td>
+                    <td>Wire Transfer</td>
+                    <td>6 Months</td>
+                    <td>Standard</td>
+                </tr>
+                <!-- Add more brokers as needed -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function searchBrokers() {
+            const input = document.getElementById('searchBar').value.toUpperCase();
+            const table = document.getElementById('brokerTable');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 0; i < tr.length; i++) {
+                const tdName = tr[i].getElementsByTagName('td')[0];
+                const tdDOT = tr[i].getElementsByTagName('td')[1];
+                const tdMC = tr[i].getElementsByTagName('td')[2];
+
+                if (tdName || tdDOT || tdMC) {
+                    const txtValueName = tdName.textContent || tdName.innerText;
+                    const txtValueDOT = tdDOT.textContent || tdDOT.innerText;
+                    const txtValueMC = tdMC.textContent || tdMC.innerText;
+
+                    if (txtValueName.toUpperCase().indexOf(input) > -1 || 
+                        txtValueDOT.toUpperCase().indexOf(input) > -1 || 
+                        txtValueMC.toUpperCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
