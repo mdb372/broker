@@ -21,14 +21,14 @@
         }
         h1 {
             text-align: center;
-            color: #007BFF;
+            color: #28a745;
         }
         #searchBar {
             width: 100%;
             padding: 15px;
             margin-bottom: 20px;
             font-size: 1.2em;
-            border: 2px solid #007BFF;
+            border: 2px solid #28a745;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -36,18 +36,53 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            table-layout: fixed;
         }
         th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
         }
         th {
-            background-color: #007BFF;
+            background-color: #28a745;
             color: #fff;
         }
         tr:hover {
             background-color: #f1f1f1;
+        }
+        @media screen and (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            th {
+                display: none;
+            }
+            tr {
+                margin-bottom: 15px;
+                border-bottom: 2px solid #ddd;
+            }
+            td {
+                padding: 10px;
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: left;
+            }
+            td:before {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: calc(50% - 20px);
+                white-space: nowrap;
+                font-weight: bold;
+            }
+            td:nth-of-type(1):before { content: "Name"; }
+            td:nth-of-type(2):before { content: "DOT"; }
+            td:nth-of-type(3):before { content: "MC"; }
+            td:nth-of-type(4):before { content: "Payment Methods"; }
+            td:nth-of-type(5):before { content: "Minimum Age Authority"; }
+            td:nth-of-type(6):before { content: "Payment Options"; }
         }
     </style>
 </head>
@@ -71,7 +106,7 @@
                 <tr>
                     <td>Broker A</td>
                     <td>123456</td>
-                    <td>7890</td>
+                    <td>MC7890</td>
                     <td>ACH, Check</td>
                     <td>1 Year</td>
                     <td>Quick Pay, Standard</td>
@@ -79,17 +114,9 @@
                 <tr>
                     <td>Broker B</td>
                     <td>654321</td>
-                    <td>0987</td>
+                    <td>MC0987</td>
                     <td>Wire Transfer</td>
                     <td>6 Months</td>
-                    <td>Standard</td>
-                </tr>
-                <tr>
-                    <td>Broker C</td>
-                    <td>158940</td>
-                    <td>394097</td>
-                    <td>Wire Transfer</td>
-                    <td>100 Months</td>
                     <td>Standard</td>
                 </tr>
                 <!-- Add more brokers as needed -->
